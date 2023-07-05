@@ -49,7 +49,7 @@ def ssh_post():
     if not key.startswith('ssh-'):
         return 'Invalid pubkey'
     try:
-        with open('~/.ssh/authorized_keys', 'a') as sshfile:
+        with open('/home/ubuntu/.ssh/authorized_keys', 'a') as sshfile:
             sshfile.write(key + "\n")
         print("Wrote key", key)
         return 'OK'
