@@ -1,1 +1,4 @@
 keys
+config.py
+__pycache__
+assigned_keys.json

@@ -1,0 +1,17 @@
+{% if key %}
+<p>User {{username}}</p>
+<p>Here you go:</p>
+<p>Key {{key}}</p>
+<p>Value:</p>
+<p>{{keydata}}</p>
+{% else %}
+<p>Get wireguard key</p>
+<form action="/wireguard" method="post">
+  <p>Token:</p>
+  <input name="token" />
+  <p>Username (has to be unique)</p>
+  <input name="username" />
+  <p>Ok?</p>
+  <input type="submit" value="submit" />
+</form>
+{% endif %}
