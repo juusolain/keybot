@@ -1,11 +1,14 @@
 {% if key %}
 <p>User {{username}}</p>
 <p>Here you go:</p>
-<p>Key {{key}}</p>
-<p>Value:</p>
-<p>{{keydata}}</p>
+<p>Config {{key}}</p>
+<form action="wireguard/download" method="post">
+  <input name="username" type="hidden" value="{{username}}" />
+  <input name="token" type="hidden" value="{{token}}" />
+  <input type="submit" value="Download" />
+</form>
 {% else %}
-<p>Get wireguard key</p>
+<p>Get wireguard config</p>
 <form action="wireguard" method="post">
   <p>Token:</p>
   <input name="token" />

@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_from_directory
 
 import os
 import json
@@ -68,9 +68,21 @@ def wg_post():
         return 'Wrong token'
     try:
         key = get_key_for_user(username)
-        keydata = open(f'keys/{key}', 'r').read()
         print(f'gave key {key} to user {username}')
-        return render_template("wireguard.html", key=key, keydata=keydata, username=username)
+        return render_template("wireguard.html", key=key, token=token, username=username)
+    except Exception as err:
+        return str(err), 500
+    
+@app.post('/wireguard/download')
+def wg_post():
+    token = request.form['token']
+    username = request.form['username']
+    if token != config.token:
+        return 'Wrong token'
+    try:
+        key = get_key_for_user(username)
+        print(f'sent download key {key} to user {username}')
+        return send_from_directory('keys', key)
     except Exception as err:
         return str(err), 500
 
