@@ -74,7 +74,7 @@ def wg_post():
         return str(err), 500
     
 @app.post('/wireguard/download')
-def wg_post():
+def wg_download():
     token = request.form['token']
     username = request.form['username']
     if token != config.token:
